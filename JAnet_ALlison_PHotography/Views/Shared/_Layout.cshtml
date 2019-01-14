@@ -8,7 +8,7 @@
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
-<body>3
+<body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -24,6 +24,9 @@
                     <li>@Html.ActionLink("Homet", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Role", "Index", "Role")</li>
+                    <li>@Html.ActionLink("Booking", "Create", "Booking")</li>
+                    <li>@Html.ActionLink("UserViewModel", "Index", "UserViewModel")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

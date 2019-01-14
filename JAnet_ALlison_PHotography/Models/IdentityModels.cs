@@ -30,6 +30,12 @@ namespace JAnet_ALlison_PHotography.Models
             return userIdentity;
         }
     }
+    //added IdentityRole
+    public class ApplicationRole : IdentityRole
+    {
+        public ApplicationRole() : base() { }
+        public ApplicationRole(string roleName) : base(roleName) { }
+    }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
@@ -42,5 +48,9 @@ namespace JAnet_ALlison_PHotography.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<JAnet_ALlison_PHotography.Models.Booking> Bookings { get; set; }
+
+        //  public System.Data.Entity.DbSet<JAnet_ALlison_PHotography.Models.RoleViewModel> RoleViewModels { get; set; } remove dont know why
     }
 }

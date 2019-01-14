@@ -1,0 +1,34 @@
+﻿@model JAnet_ALlison_PHotography.Models.UserViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+@using (Html.BeginForm("Index", "UserViewModel", FormMethod.Post))
+{
+    <p>
+        Employee Name: 
+        @Html.DropDownListFor(m => m.Id, new SelectList(ViewBag.Employee, "Value", "Text"), new { @class = "form-control" })
+    </p>
+    <input type="submit" value="Save" />
+}
+@ViewBag.UserId
+@ViewBag.Try
+@*@model IEnumerable<JAnet_ALlison_PHotography.Models.UserViewModel>*@
+
+
+@*<div class="row">
+    <h4>Users</h4>
+
+    @foreach (var user in Model)
+    {
+        <p>
+            <strong>
+              @user.Id | @user.FirstName | @user.LastName | @user.RoleName
+            </strong>
+        </p>
+    }
+</div>*@
+
+
+
+
