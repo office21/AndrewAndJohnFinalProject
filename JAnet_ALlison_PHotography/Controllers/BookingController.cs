@@ -15,6 +15,7 @@ namespace JAnet_ALlison_PHotography.Controllers
     public class BookingController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        private UserManager<ApplicationUser> _userManager;
 
         // GET: Booking
         public async Task<ActionResult> Index()
@@ -83,7 +84,7 @@ namespace JAnet_ALlison_PHotography.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "booking_Id,customer_Id,UserName,dateTime,TimeSlot,PhotoDetail")] Booking booking)
+        public async Task<ActionResult> Create(Booking booking)
         {
             List<SelectListItem> timeSlot = new List<SelectListItem>(); // list for time slot
 
@@ -121,12 +122,15 @@ namespace JAnet_ALlison_PHotography.Controllers
             //    Text = currentUser
             //});
             //ViewBag.UserName = userNamelist;
+
             if (ModelState.IsValid)
             {
+                
+                    booking.UserName = System.Web.HttpContext.Current.User.Identity.GetUserName();
+                    db.Bookings.Add(booking);
+                    await db.SaveChangesAsync();
+                    return RedirectToAction("Index");
                
-                db.Bookings.Add(booking);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
             }
 
             return View(booking);
@@ -182,10 +186,11 @@ namespace JAnet_ALlison_PHotography.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "booking_Id,customer_Id,UserName,dateTime,TimeSlot,PhotoDetail")] Booking booking)
+        public async Task<ActionResult> Edit(Booking booking)
         {
             if (ModelState.IsValid)
             {
+                booking.UserName= booking.UserName = System.Web.HttpContext.Current.User.Identity.GetUserName();
                 db.Entry(booking).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");

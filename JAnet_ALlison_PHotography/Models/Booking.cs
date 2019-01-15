@@ -10,11 +10,12 @@ namespace JAnet_ALlison_PHotography.Models
     {
         [Key]
         public int booking_Id { get; set; }
-        [Display(Name = "Customer: ")]
+
+        [Display(Name = "Employee: ")]
         [Required(ErrorMessage = "Your {0} is required")]
-        public string customer_Id { get; set; }
+        public string employee_Id { get; set; }
         
-        [Display(Name = "Employee Email: ")]
+        [Display(Name = "Customer Email: ")]
         public string UserName { get; set; }
         
         [Display(Name = "Date: ")]
@@ -22,7 +23,7 @@ namespace JAnet_ALlison_PHotography.Models
         [DataType(DataType.Date)]
         public DateTime dateTime { set; get; }
 
-        [Display(Name = "Employee: ")]
+        [Display(Name = "Time: ")]
         [Required(ErrorMessage = "Your {0} is required")]
         public int TimeSlot { get; set; }
 
